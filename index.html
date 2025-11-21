@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ShinePro Detailing | Mobile &amp; In‑Shop Car Detailing</title>
+  <meta
+    name="description"
+    content="Professional car detailing, interior deep cleaning, paint protection, and mobile services. Make your car look brand new again."
+  />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <header>
+    <div class="nav">
+      <div class="logo">ShinePro Detailing</div>
+      <nav>
+        <a href="#services">Services</a>
+        <a href="#pricing">Packages</a>
+        <a href="#gallery">Gallery</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button
+        class="btn-nav"
+        type="button"
+        onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
+      >
+        Book Now
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO -->
+    <section class="hero" id="top">
+      <div class="hero-text">
+        <p class="badge">Premium Mobile &amp; In‑Shop Detailing</p>
+        <h1>Make your car look brand new again.</h1>
+        <p>
+          Interior deep cleaning, exterior protection, and mobile service
+          right to your driveway. High‑end results without the dealership prices.
+        </p>
+        <div class="hero-ctas">
+          <button
+            class="btn-primary"
+            type="button"
+            onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
+          >
+            Get a Free Quote
+          </button>
+          <button
+            class="btn-secondary"
+            type="button"
+            onclick="document.getElementById('pricing').scrollIntoView({ behavior: 'smooth' });"
+          >
+            View Packages
+          </button>
+        </div>
+        <p class="hero-note">
+          Serving your local area • Same‑week appointments • Interior &amp; exterior detailing
+        </p>
+      </div>
+
+      <aside class="hero-card" aria-label="Detailing highlight card">
+        <img
+          src="https://images.pexels.com/photos/6870324/pexels-photo-6870324.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+          alt="Detailer cleaning a car interior"
+        />
+        <h3>Why ShinePro?</h3>
+        <p>We treat every car like it’s our own.</p>
+        <p>Perfect for daily drivers, weekend cars, and family vehicles.</p>
+        <p class="hero-contact">
+          <strong>Call / Text:</strong> (732) 555‑1234
+        </p>
+      </aside>
+    </section>
+
+    <!-- SERVICES -->
+    <section id="services">
+      <h2 class="section-title">Our Detailing Services</h2>
+      <p class="section-subtitle">
+        Interior, exterior, and premium add‑ons designed to restore your vehicle and protect your investment.
+      </p>
+      <div class="services-grid">
+        <article class="service-card">
+          <span class="tag">Interior</span>
+          <h3>Interior Deep Clean</h3>
+          <p>
+            Full vacuum, wipe‑down, plastics, vents, cup holders,
+            door panels, and interior glass for a like‑new cabin.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <span class="tag">Exterior</span>
+          <h3>Hand Wash &amp; Wax</h3>
+          <p>
+            Two‑bucket wash, foam pre‑soak, wheel and tire cleaning,
+            tire shine, and protective wax for added gloss.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <span class="tag">Premium</span>
+          <h3>Paint Enhancement</h3>
+          <p>
+            Clay bar and light machine polishing to remove light
+            oxidation and boost gloss and clarity in your paint.
+          </p>
+        </article>
+
+        <article class="service-card">
+          <span class="tag">Add‑On</span>
+          <h3>Headlight Restoration</h3>
+          <p>
+            Removes yellowing and haze, improving both appearance and
+            nighttime visibility.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pricing">
+      <h2 class="section-title">Packages</h2>
+      <p class="section-subtitle">
+        Final pricing depends on vehicle size and condition. These starting packages cover most vehicles.
+      </p>
+      <div class="pricing-grid">
+        <article class="price-card">
+          <h3>Quick Clean</h3>
+          <p class="price">$75+</p>
+          <ul class="price-list">
+            <li>Exterior hand wash</li>
+            <li>Wheels &amp; tires cleaned and dressed</li>
+            <li>Light interior vacuum and wipe‑down</li>
+          </ul>
+          <button
+            class="btn-primary"
+            type="button"
+            onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
+          >
+            Book Quick Clean
+          </button>
+        </article>
+
+        <article class="price-card highlight">
+          <h3>Full Detail</h3>
+          <p class="price">$160+</p>
+          <ul class="price-list">
+            <li>Complete interior detail</li>
+            <li>Shampoo mats and seats (as needed)</li>
+            <li>Exterior wash plus spray wax</li>
+          </ul>
+          <button
+            class="btn-primary"
+            type="button"
+            onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
+          >
+            Most Popular Package
+          </button>
+        </article>
+
+        <article class="price-card">
+          <h3>Premium Detail</h3>
+          <p class="price">$240+</p>
+          <ul class="price-list">
+            <li>Full interior detail</li>
+            <li>Clay bar and light polish</li>
+            <li>Longer‑lasting paint protection</li>
+          </ul>
+          <button
+            class="btn-primary"
+            type="button"
+            onclick="document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });"
+          >
+            Book Premium
+          </button>
+        </article>
+      </div>
+    </section>
+
+    <!-- GALLERY -->
+    <section id="gallery">
+      <h2 class="section-title">Before &amp; After</h2>
+      <p class="section-subtitle">
+        Swap these sample photos with your own details to showcase your work and transformations.
+      </p>
+      <div class="gallery-grid">
+        <figure class="gallery-item">
+          <img
+            src="https://images.pexels.com/photos/6870338/pexels-photo-6870338.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+            alt="Detailing example 1"
+          />
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="https://images.pexels.com/photos/3822846/pexels-photo-3822846.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+            alt="Detailing example 2"
+          />
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="https://images.pexels.com/photos/6870329/pexels-photo-6870329.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+            alt="Detailing example 3"
+          />
+        </figure>
+        <figure class="gallery-item">
+          <img
+            src="https://images.pexels.com/photos/6870330/pexels-photo-6870330.jpeg?auto=compress&amp;cs=tinysrgb&amp;w=800"
+            alt="Detailing example 4"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2 class="section-title">Book Your Detail</h2>
+      <p class="section-subtitle">
+        Tell us about your vehicle and your schedule. We’ll confirm your appointment and pricing.
+      </p>
+      <div class="contact-wrap">
+        <form
+          onsubmit="event.preventDefault(); alert('Form submitted! Hook this up to email or a backend.');"
+        >
+          <div>
+            <label for="name">Name</label>
+            <input id="name" name="name" type="text" required />
+          </div>
+          <div>
+            <label for="phone">Phone</label>
+            <input id="phone" name="phone" type="tel" required />
+          </div>
+          <div>
+            <label for="vehicle">Vehicle</label>
+            <input
+              id="vehicle"
+              name="vehicle"
+              type="text"
+              placeholder="Year / Make / Model"
+            />
+          </div>
+          <div>
+            <label for="service">Service Needed</label>
+            <input
+              id="service"
+              name="service"
+              type="text"
+              placeholder="Full detail, interior only, paint enhancement..."
+            />
+          </div>
+          <div>
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              placeholder="Preferred date/time, mobile or drop‑off, any special requests..."
+            ></textarea>
+          </div>
+          <button class="btn-primary" type="submit">Send Request</button>
+        </form>
+
+        <aside class="contact-info-box">
+          <h3>Contact Info</h3>
+          <p><strong>Phone:</strong> (732) 555‑1234</p>
+          <p><strong>Email:</strong> info@shineprodetailing.com</p>
+          <p><strong>Area:</strong> Your city here</p>
+          <p><strong>Hours:</strong> Mon–Sat &nbsp;9am – 6pm</p>
+        </aside>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>
+      © <span id="year"></span> ShinePro Detailing. All rights reserved.
+    </p>
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
