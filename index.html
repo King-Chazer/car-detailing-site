@@ -188,33 +188,39 @@
       <p class="section-subtitle">
         What clients are saying after their details. Swap these with real reviews when you’re ready.
       </p>
+      <form class="review-form" id="review-form">
+        <div class="review-form-row">
+          <label for="review-name">Name</label>
+          <input id="review-name" name="name" type="text" placeholder="Your name" />
+        </div>
+        <div class="review-form-row">
+          <label for="review-rating">Rating</label>
+          <select id="review-rating" name="rating" required>
+            <option value="">Select rating</option>
+            <option value="5">★★★★★ &nbsp; 5 - Amazing</option>
+            <option value="4">★★★★☆ &nbsp; 4 - Great</option>
+            <option value="3">★★★☆☆ &nbsp; 3 - Okay</option>
+            <option value="2">★★☆☆☆ &nbsp; 2 - Needs work</option>
+            <option value="1">★☆☆☆☆ &nbsp; 1 - Not happy</option>
+          </select>
+        </div>
+        <div class="review-form-row full-width">
+          <label for="review-text">Review</label>
+          <textarea
+            id="review-text"
+            name="text"
+            rows="3"
+            placeholder="Tell us how the detail went..."
+            required
+          ></textarea>
+        </div>
+        <button class="btn-primary" type="submit">Submit Review</button>
+        <p class="review-form-note">
+          Reviews are saved in this browser only for now. A future backend can sync them across all visitors.
+        </p>
+      </form>
       <div class="reviews-grid">
-        <article class="review-card">
-          <p class="review-text">
-            “Bro turned my daily into a show car. Interior smells brand new and the seats look crazy clean.”
-          </p>
-          <p class="review-meta">
-            ★★★★★ &nbsp; <strong>J. Rivera</strong> • Full Detail
-          </p>
-        </article>
-
-        <article class="review-card">
-          <p class="review-text">
-            “Pulled up to my driveway on time, knocked out the wash and interior, and left the paint shining. 10/10.”
-          </p>
-          <p class="review-meta">
-            ★★★★★ &nbsp; <strong>M. Lopez</strong> • Premium Detail
-          </p>
-        </article>
-
-        <article class="review-card">
-          <p class="review-text">
-            “Did my Uber car between shifts. Fast, clean, and my passengers keep commenting on how fresh it looks.”
-          </p>
-          <p class="review-meta">
-            ★★★★★ &nbsp; <strong>K. Johnson</strong> • Quick Clean
-          </p>
-        </article>
+        <!-- Top reviews will be injected by JavaScript -->
       </div>
     </section>
 
@@ -317,7 +323,141 @@
   </footer>
 
   <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
+    (function () {
+      // Footer year
+      var yearSpan = document.getElementById("year");
+      if (yearSpan) {
+        yearSpan.textContent = new Date().getFullYear();
+      }
+
+      // --- Simple client-side review system (per-browser only) ---
+      var defaultReviews = [
+        {
+          name: "J. Rivera",
+          packageLabel: "Full Detail",
+          text:
+            "Bro turned my daily into a show car. Interior smells brand new and the seats look crazy clean.",
+          rating: 5,
+          createdAt: Date.now() - 1000 * 60 * 60 * 24 * 3,
+        },
+        {
+          name: "M. Lopez",
+          packageLabel: "Premium Detail",
+          text:
+            "Pulled up to my driveway on time, knocked out the wash and interior, and left the paint shining. 10/10.",
+          rating: 5,
+          createdAt: Date.now() - 1000 * 60 * 60 * 24 * 2,
+        },
+        {
+          name: "K. Johnson",
+          packageLabel: "Quick Clean",
+          text:
+            "Did my Uber car between shifts. Fast, clean, and my passengers keep commenting on how fresh it looks.",
+          rating: 5,
+          createdAt: Date.now() - 1000 * 60 * 60 * 24,
+        },
+      ];
+
+      var STORAGE_KEY = "shinepro_reviews_v1";
+
+      function loadCustomReviews() {
+        try {
+          var raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return [];
+          var parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed)) return [];
+          return parsed;
+        } catch (e) {
+          return [];
+        }
+      }
+
+      function saveCustomReviews(list) {
+        try {
+          localStorage.setItem(STORAGE_KEY, JSON.stringify(list));
+        } catch (e) {
+          // ignore storage errors (private mode, etc.)
+        }
+      }
+
+      function getAllReviews() {
+        var custom = loadCustomReviews();
+        return defaultReviews.concat(custom);
+      }
+
+      function renderTopReviews() {
+        var container = document.querySelector(".reviews-grid");
+        if (!container) return;
+
+        var all = getAllReviews().slice();
+        all.sort(function (a, b) {
+          if (b.rating !== a.rating) return b.rating - a.rating;
+          return (b.createdAt || 0) - (a.createdAt || 0);
+        });
+
+        var top = all.slice(0, 3);
+        container.innerHTML = "";
+
+        top.forEach(function (r) {
+          var article = document.createElement("article");
+          article.className = "review-card";
+
+          var textP = document.createElement("p");
+          textP.className = "review-text";
+          textP.textContent = "" + "\u201C" + r.text + "\u201D";
+
+          var metaP = document.createElement("p");
+          metaP.className = "review-meta";
+          metaP.innerHTML =
+            "★★★★★ &nbsp; <strong" + ">" +
+            (r.name || "Customer") +
+            "</strong> • " +
+            (r.packageLabel || "Detail");
+
+          article.appendChild(textP);
+          article.appendChild(metaP);
+          container.appendChild(article);
+        });
+      }
+
+      function setupReviewForm() {
+        var form = document.getElementById("review-form");
+        if (!form) return;
+
+        form.addEventListener("submit", function (e) {
+          e.preventDefault();
+          var nameInput = document.getElementById("review-name");
+          var ratingSelect = document.getElementById("review-rating");
+          var textInput = document.getElementById("review-text");
+
+          var name = (nameInput.value || "").trim() || "Anonymous";
+          var rating = parseInt(ratingSelect.value || "5", 10) || 5;
+          var text = (textInput.value || "").trim();
+          if (!text) {
+            return;
+          }
+
+          var custom = loadCustomReviews();
+          custom.push({
+            name: name,
+            rating: rating,
+            text: text,
+            packageLabel: "Customer Review",
+            createdAt: Date.now(),
+          });
+
+          saveCustomReviews(custom);
+          form.reset();
+          renderTopReviews();
+          alert("Thanks for your review! It helps update the top reviews on this device.");
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", function () {
+        setupReviewForm();
+        renderTopReviews();
+      });
+    })();
   </script>
 </body>
 </html>
