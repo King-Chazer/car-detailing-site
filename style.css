@@ -627,3 +627,133 @@ footer {
     grid-template-columns: 1fr;
   }
 }
+
+/* REVIEW FORM */
+.review-form {
+  margin-top: 1.75rem;
+  margin-bottom: 1.75rem;
+  display: grid;
+  gap: 1rem 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+}
+
+.review-form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.review-form-row.full-width {
+  grid-column: 1 / -1;
+}
+
+.review-form label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+}
+
+.review-form input,
+.review-form select,
+.review-form textarea {
+  border-radius: 999px;
+  border: 1px solid var(--border-subtle);
+  background: rgba(15, 23, 42, 0.9);
+  color: var(--text-muted);
+  padding: 0.55rem 0.75rem;
+  font-size: 0.9rem;
+}
+
+.review-form textarea {
+  border-radius: var(--radius-lg);
+  min-height: 90px;
+  resize: vertical;
+}
+
+.review-form-note {
+  grid-column: 1 / -1;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  opacity: 0.75;
+}
+
+/* === ANIMATIONS === */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Hero entrance */
+.hero-text {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeInUp 0.75s ease-out forwards;
+}
+
+.hero-card {
+  opacity: 0;
+  transform: translateY(18px);
+  animation: fadeInUp 0.85s ease-out forwards;
+}
+
+/* Service cards */
+#services .service-card {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+#services .service-card:nth-child(1) { animation-delay: 0.05s; }
+#services .service-card:nth-child(2) { animation-delay: 0.12s; }
+#services .service-card:nth-child(3) { animation-delay: 0.19s; }
+#services .service-card:nth-child(4) { animation-delay: 0.26s; }
+
+/* Pricing cards */
+#pricing .price-card {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.75s ease-out forwards;
+}
+
+#pricing .price-card:nth-child(1) { animation-delay: 0.05s; }
+#pricing .price-card:nth-child(2) { animation-delay: 0.15s; }
+#pricing .price-card:nth-child(3) { animation-delay: 0.25s; }
+
+/* Review cards (top 3 injected by JS) */
+.reviews-grid .review-card {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+/* Gallery items */
+.gallery-grid .gallery-item {
+  opacity: 0;
+  transform: translateY(16px);
+  animation: fadeInUp 0.7s ease-out forwards;
+}
+
+.gallery-grid .gallery-item:nth-child(1) { animation-delay: 0.05s; }
+.gallery-grid .gallery-item:nth-child(2) { animation-delay: 0.12s; }
+.gallery-grid .gallery-item:nth-child(3) { animation-delay: 0.19s; }
+.gallery-grid .gallery-item:nth-child(4) { animation-delay: 0.26s; }
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .hero-text,
+  .hero-card,
+  #services .service-card,
+  #pricing .price-card,
+  .reviews-grid .review-card,
+  .gallery-grid .gallery-item {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
